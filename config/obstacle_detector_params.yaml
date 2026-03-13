@@ -1,0 +1,5 @@
+sllidar_obstacle_detection:
+  ros__parameters:
+    fov_angle_min: -60.0
+    fov_angle_max: 60.0
+    thresh_dist: 0.1

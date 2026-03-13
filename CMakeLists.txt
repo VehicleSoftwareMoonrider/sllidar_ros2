@@ -35,6 +35,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 ################################################################################
 # Build
@@ -59,15 +60,23 @@ ament_target_dependencies(sllidar_client
   std_srvs
   sensor_msgs
 )
+
+add_executable(sllidar_obstacle_detection src/sllidar_obstacle_detection.cpp)
+ament_target_dependencies(sllidar_obstacle_detection
+  rclcpp
+  std_srvs
+  sensor_msgs
+  std_msgs
+)
 ################################################################################
 # Install
 ################################################################################
-install(DIRECTORY launch rviz
+install(DIRECTORY launch rviz config
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(
-  TARGETS sllidar_node sllidar_client
+  TARGETS sllidar_node sllidar_client sllidar_obstacle_detection
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
